@@ -1,0 +1,42 @@
+<div class="mainLeft">
+    <% contents.forEach(function (t) { %>
+    <div class="listBox">
+        <h1><%= t.title %></h1>
+        <p class="colDefault">
+            作者：<span class="colInfo"><%= t.user.username %></span> -
+            时间：<span class="colInfo"><%= moment(t.addTime).format('YYYY年MM月DD日 HH:mm:ss') %></span> -
+            阅读：<span class="colInfo"><%= t.views %></span> -
+            评论：<span class="colInfo">9</span>
+        </p>
+        <dfn><p>
+                <%- markdown.toHTML(t.description) %>
+            </p>
+        </dfn>
+        <div class="function"><a href="/view?contentid=<%= t._id %>">阅读全文</a></div>
+    </div>
+    <% }) %>
+
+    <div class="pager">
+        <ul class="clear">
+            <li class="previous">
+                <% if(page <= 1){ %>
+                <span>没有上一页了</span>
+                <% }else { %>
+                <a href="/?categoryid=<%= categoryid %>&page=<%= Math.max(page - 1, 1) %>">上一页</a>
+                <% } %>
+            </li>
+            <li>
+                <% if(pages > 0){ %>
+                <strong><%= page %> / <%= pages %></strong>
+                <% } %>
+            </li>
+            <li class="next">
+                <% if(page >= pages){ %>
+                <span>没有下一页了</span>
+                <% }else { %>
+                <a href="/?categoryid=<%= categoryid %>&page=<%= Math.min(page + 1, pages) %>">下一页</a>
+                <% } %>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<nav>
+    <div class="menu">
+        <% if(categoryid == ''){ %>
+        <a href="/" class="focus">首页</a>
+        <% }else{ %>
+        <a href="/">首页</a>
+        <% } %>
+
+        <% category.forEach(function (t) { %>
+        <% if (categoryid == t._id) { %>
+        <a href="/?categoryid=<%= t._id %>" class="focus"><%= t.name %></a>
+        <% }else{ %>
+        <a href="/?categoryid=<%= t._id %>"><%= t.name %></a>
+        <% } %>
+        <% }) %>
+    </div>
+</nav>

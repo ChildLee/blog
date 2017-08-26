@@ -1,0 +1,28 @@
+<% include layout.ejs %>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="/admin">管理首页</a></li>
+        <li>分类列表</li>
+    </ol>
+
+    <h3>分类列表</h3>
+
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>ID</th>
+            <th>分类名称</th>
+            <th>操作</th>
+        </tr>
+        <% category.forEach(function (t) { %>
+        <tr>
+            <td><%= t._id %></td>
+            <td><%= t.name %></td>
+            <td>
+                <a href="/admin/category/edit?id=<%= t._id %>">修改</a>
+                <a href="/admin/category/delete?id=<%= t._id %>">删除</a>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+</div>
+<% include page.ejs %>

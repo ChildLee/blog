@@ -1,0 +1,42 @@
+<% include layout %>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="/admin">管理首页</a></li>
+        <li>分类列表</li>
+    </ol>
+
+    <h3>分类列表</h3>
+
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>ID</th>
+            <th>分类名称</th>
+            <th>标题</th>
+            <th>作者</th>
+            <th>添加时间</th>
+            <th>阅读量</th>
+            <th>操作</th>
+        </tr>
+        <% content.forEach(function (t) { %>
+        <tr>
+            <td>
+                <%= t._id %>
+            </td>
+            <td>
+                <%= !t.category ? null : t.category.name %>
+            </td>
+            <td>
+                <%= t.title %>
+            </td>
+            <td><%= t.user.username %></td>
+            <td><%= moment(t.addTime).format('YYYY年MM月DD日 HH:mm:ss') %></td>
+            <td><%= t.views %></td>
+            <td>
+                <a href="/admin/content/edit?id=<%= t._id %>">修改</a>
+                <a href="/admin/content/delete?id=<%= t._id %>">删除</a>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+</div>
+<% include page %>
